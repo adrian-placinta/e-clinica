@@ -12,6 +12,7 @@ public record AppointmentDetails(LocalDate appointmentDate,
                                  UUID doctorId) {
     public AppointmentDetails {
         Objects.requireNonNull(appointmentDate);
+        checkDateTimeValidity(appointmentDate);
         Objects.requireNonNull(appointmentLocation);
         Objects.requireNonNull(patientId);
         Objects.requireNonNull(doctorId);

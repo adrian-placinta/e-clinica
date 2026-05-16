@@ -2,31 +2,29 @@ package com.e_clinic.e_consult.domain.appointment.model;
 
 import com.e_clinic.e_consult.domain.appointment.exception.InvalidAppointmentException;
 import com.e_clinic.e_consult.domain.appointment.vo.AppointmentDetails;
+import com.e_clinic.e_consult.domain.appointment.vo.AppointmentId;
 import com.e_clinic.e_consult.domain.appointment.vo.AppointmentStatus;
-import org.springframework.data.domain.AbstractAggregateRoot;
 
 import java.util.Objects;
-import java.util.UUID;
 
-public class Appointment extends AbstractAggregateRoot<Appointment> {
-    private final UUID appointmentId;
+public class Appointment {
+    private AppointmentId appointmentId;
     private AppointmentDetails appointmentDetails;
     private AppointmentStatus appointmentStatus;
 
-
-    private Appointment(UUID appointmentId, AppointmentStatus appointmentStatus, AppointmentDetails appointmentDetails) {
+    private Appointment(AppointmentId appointmentId, AppointmentStatus appointmentStatus, AppointmentDetails appointmentDetails) {
 
         this.appointmentId = Objects.requireNonNull(appointmentId);
         this.appointmentStatus = Objects.requireNonNull(appointmentStatus);
         this.appointmentDetails = Objects.requireNonNull(appointmentDetails);
     }
 
-    public static Appointment of(UUID appointmentId, AppointmentStatus appointmentStatus, AppointmentDetails appointmentDetails) {
+    public static Appointment of(AppointmentId appointmentId, AppointmentStatus appointmentStatus, AppointmentDetails appointmentDetails) {
         return new Appointment(appointmentId, appointmentStatus, appointmentDetails);
     }
 
     public static Appointment newAppointment(AppointmentDetails appointmentDetails) {
-        return new Appointment(UUID.randomUUID(), AppointmentStatus.SCHEDULED, appointmentDetails);
+        return new Appointment(AppointmentId.generate(), AppointmentStatus.SCHEDULED, appointmentDetails);
     }
 
     public void cancelAppointment() {
