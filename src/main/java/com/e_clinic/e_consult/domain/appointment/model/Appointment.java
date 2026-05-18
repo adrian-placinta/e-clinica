@@ -44,6 +44,18 @@ public class Appointment {
         this.appointmentDetails = appointmentDetails;
     }
 
+    public AppointmentId getAppointmentId() {
+        return appointmentId;
+    }
+
+    public AppointmentDetails getAppointmentDetails() {
+        return appointmentDetails;
+    }
+
+    public AppointmentStatus getAppointmentStatus() {
+        return appointmentStatus;
+    }
+
 }
 
 

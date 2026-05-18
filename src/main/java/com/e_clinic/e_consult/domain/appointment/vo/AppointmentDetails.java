@@ -8,6 +8,7 @@ import java.util.UUID;
 
 public record AppointmentDetails(LocalDate appointmentDate,
                                  AppointmentLocation appointmentLocation,
+                                 String reasonForVisit,
                                  UUID patientId,
                                  UUID doctorId) {
     public AppointmentDetails {
@@ -16,6 +17,7 @@ public record AppointmentDetails(LocalDate appointmentDate,
         Objects.requireNonNull(appointmentLocation);
         Objects.requireNonNull(patientId);
         Objects.requireNonNull(doctorId);
+        Objects.requireNonNull(reasonForVisit);
     }
 
     private static void checkDateTimeValidity(LocalDate appointmentDate) {
