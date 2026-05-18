@@ -1,14 +1,18 @@
 package com.e_clinic.e_consult.application.appointment.usecase;
 
 import com.e_clinic.e_consult.application.appointment.command.CreateAppointmentCommand;
+import com.e_clinic.e_consult.application.appointment.mapper.AppointmentDtoDomainMapper;
+import com.e_clinic.e_consult.domain.appointment.model.Appointment;
 import com.e_clinic.e_consult.domain.appointment.port.AppointmentRepository;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 public class CreateAppointmentUseCase {
-    private final AppointmentRepository repository;
+    private final AppointmentRepository appointmentRepository;
 
-    public void execute(CreateAppointmentCommand command) {
+    public CreateAppointmentUseCase(AppointmentRepository appointmentRepository) {
+        this.appointmentRepository = appointmentRepository;
+    }
 
+    public Appointment execute(CreateAppointmentCommand command) {
+        return appointmentRepository.save(AppointmentDtoDomainMapper.toDomain(command));
     }
 }

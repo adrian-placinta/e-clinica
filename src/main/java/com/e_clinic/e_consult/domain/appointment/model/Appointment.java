@@ -28,16 +28,14 @@ public class Appointment {
     }
 
     public void cancelAppointment() {
-        if (this.appointmentStatus.equals(AppointmentStatus.CANCELLED) ||
-                this.appointmentStatus.equals(AppointmentStatus.COMPLETED)) {
+        if (this.appointmentStatus.equals(AppointmentStatus.CANCELLED) || this.appointmentStatus.equals(AppointmentStatus.COMPLETED)) {
             throw new InvalidAppointmentException("Appointment is cancelled/completed");
         }
         this.appointmentStatus = AppointmentStatus.CANCELLED;
     }
 
     public void rescheduleAppointment(AppointmentDetails appointmentDetails) {
-        if (this.appointmentStatus.equals(AppointmentStatus.CANCELLED) ||
-                this.appointmentStatus.equals(AppointmentStatus.COMPLETED)) {
+        if (this.appointmentStatus.equals(AppointmentStatus.CANCELLED) || this.appointmentStatus.equals(AppointmentStatus.COMPLETED)) {
             throw new InvalidAppointmentException("Appointment is cancelled/completed");
         }
         this.appointmentStatus = AppointmentStatus.SCHEDULED;
